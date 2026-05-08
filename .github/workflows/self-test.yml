@@ -28,11 +28,9 @@ concurrency:
 
 jobs:
   workflows-policy:
-    timeout-minutes: 30
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflows-policy.yml@01e2b12e992621fecf074b8a202f66044196f3bf # v1.0.4
 
   codeql-actions:
-    timeout-minutes: 30
     uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-codeql.yml@01e2b12e992621fecf074b8a202f66044196f3bf # v1.0.4
     with:
       languages: actions
@@ -40,14 +38,12 @@ jobs:
       upload-sarif: false
 
   lint:
-    timeout-minutes: 30
     uses: ./.github/workflows/container-lint.yml
     with:
       containerfile: examples/hello/Containerfile
       hadolint-config: .hadolint.yaml
 
   build:
-    timeout-minutes: 30
     permissions:
       contents: read
       packages: write
@@ -59,7 +55,6 @@ jobs:
       push: false
 
   build-push:
-    timeout-minutes: 30
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: read
@@ -72,7 +67,6 @@ jobs:
       push: true
 
   sign:
-    timeout-minutes: 30
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.build-push.outputs.image_ref != ''
     needs: [build-push]
     permissions:
@@ -84,7 +78,6 @@ jobs:
       image-ref: ${{ needs.build-push.outputs.image_ref }}
 
   scan-grype:
-    timeout-minutes: 30
     uses: ./.github/workflows/container-scan-grype.yml
     with:
       image-name: hello-example-container
@@ -93,7 +86,6 @@ jobs:
       severity: critical
 
   scan-trivy:
-    timeout-minutes: 30
     uses: ./.github/workflows/container-scan-trivy.yml
     with:
       image-name: hello-example-container
@@ -102,7 +94,6 @@ jobs:
       severity: CRITICAL
 
   scan-snyk:
-    timeout-minutes: 30
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
     uses: ./.github/workflows/container-scan-snyk.yml
     with:
@@ -113,7 +104,6 @@ jobs:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   sbom:
-    timeout-minutes: 30
     uses: ./.github/workflows/container-sbom.yml
     with:
       image-name: hello-example-container
