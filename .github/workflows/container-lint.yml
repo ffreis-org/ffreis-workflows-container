@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   lint:
+    timeout-minutes: 30
     name: Hadolint
     runs-on: ubuntu-latest
 

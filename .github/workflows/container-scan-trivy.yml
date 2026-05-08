@@ -34,6 +34,7 @@ permissions:
 
 jobs:
   trivy:
+    timeout-minutes: 30
     name: Trivy
     runs-on: ubuntu-latest
 

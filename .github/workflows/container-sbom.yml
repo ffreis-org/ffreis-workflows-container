@@ -29,6 +29,7 @@ permissions:
 
 jobs:
   sbom:
+    timeout-minutes: 30
     name: SBOM (Syft)
     runs-on: ubuntu-latest
 

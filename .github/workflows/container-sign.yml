@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   sign:
+    timeout-minutes: 30
     name: Cosign (keyless)
     runs-on: ubuntu-latest
 
