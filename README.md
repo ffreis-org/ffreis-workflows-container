@@ -1,5 +1,9 @@
 # ffreis-workflows-container
 
+<!-- ffreis-badges:start -->
+[![CI](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/FelipeFuhr/ffreis-badges/main/badges/ffreis-workflows-container/ci.json)](https://github.com/FelipeFuhr/ffreis-workflows-container/actions) [![License](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/FelipeFuhr/ffreis-badges/main/badges/ffreis-workflows-container/license.json)](https://github.com/FelipeFuhr/ffreis-workflows-container/blob/main/LICENSE)
+<!-- ffreis-badges:end -->
+
 Reusable GitHub Actions workflow library for container image (Docker/Podman) operations in the ffreis fleet.
 
 All workflows use `on: workflow_call` and should be consumed from other repositories by pinning to a specific commit SHA.
