@@ -12,6 +12,15 @@ on:
         required: false
         type: boolean
         default: false
+      runner:
+        description: |
+          JSON-encoded runner label(s). Default: GitHub-hosted ubuntu-latest.
+          Self-hosted homelab box (private repos only): NOT YET SUPPORTED — this
+          runner has no docker/podman installed. Do not pass a self-hosted
+          override here until a container runtime is provisioned there.
+        required: false
+        type: string
+        default: '["ubuntu-latest"]'
 
 # id-token: write is required for cosign keyless OIDC signing.
 # The calling workflow must grant this permission on the calling job.
@@ -25,7 +34,7 @@ jobs:
       contents: read
       id-token: write
       packages: write
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJson(inputs.runner) }}
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
