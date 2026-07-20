@@ -11,6 +11,6 @@ on:
 jobs:
   alert:
     if: github.event.workflow_run.conclusion == 'failure'
-    uses: ffreis-org/ffreis-workflows-general/.github/workflows/general-workflow-failure-alert.yml@ef5f76c297dba0d2990210a905d045c826092427 # v1.4.3
+    uses: FelipeFuhr/ffreis-workflows-general/.github/workflows/general-workflow-failure-alert.yml@ef5f76c297dba0d2990210a905d045c826092427 # v1.4.3
     permissions:
       pull-requests: write
