@@ -27,7 +27,6 @@ on:
       runner:
         description: |
           JSON-encoded runner label(s). Default: GitHub-hosted ubuntu-latest.
-          Self-hosted homelab box (private repos only): NOT YET SUPPORTED — this
           runner has no docker/podman installed. Do not pass a self-hosted
           override here until a container runtime is provisioned there.
         required: false
